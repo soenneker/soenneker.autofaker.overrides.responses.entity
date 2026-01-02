@@ -20,6 +20,6 @@ public class EntityResponseOverride : AutoFakerOverride<EntityResponse>
         var target = (context.Instance as EntityResponse)!;
 
         target.Id = context.Faker.Random.Guid().ToString();
-        target.CreatedAt = DateTime.UtcNow;
+        target.CreatedAt = DateTimeOffset.UtcNow;
     }
 }
