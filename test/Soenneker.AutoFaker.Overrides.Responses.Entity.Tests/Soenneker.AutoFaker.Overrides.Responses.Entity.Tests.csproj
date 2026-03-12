@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Soenneker.AutoFaker.Overrides.Responses.Entity.csproj" />
+        <ProjectReference Include="..\..\src\Soenneker.AutoFaker.Overrides.Responses.Entity\Soenneker.AutoFaker.Overrides.Responses.Entity.csproj" />
     </ItemGroup>
 
     <ItemGroup>
