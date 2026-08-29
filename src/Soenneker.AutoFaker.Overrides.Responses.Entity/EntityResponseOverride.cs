@@ -17,7 +17,7 @@ public class EntityResponseOverride : AutoFakerOverride<EntityResponse>
     /// <returns>A value indicating whether the operation succeeded.</returns>
     public override bool CanOverride(AutoFakerContext context)
     {
-        return context.GenerateType.IsSubclassOf(typeof(EntityResponse));
+        return typeof(EntityResponse).IsAssignableFrom(context.GenerateType);
     }
 
     /// <summary>
@@ -29,6 +29,9 @@ public class EntityResponseOverride : AutoFakerOverride<EntityResponse>
         var target = (context.Instance as EntityResponse)!;
 
         target.Id = context.Faker.Random.Guid().ToString();
-        target.CreatedAt = DateTimeOffset.UtcNow;
+
+        DateTimeOffset utcNow = DateTimeOffset.UtcNow;
+        target.CreatedAt = utcNow;
+        target.ModifiedAt = utcNow;
     }
 }

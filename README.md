@@ -5,20 +5,25 @@
 
 # Soenneker.AutoFaker.Overrides.Responses.Entity
 
-An AutoFaker (AutoBogus) override for the EntityResponse object.
+An AutoFaker override that creates coherent identity and audit fields for `EntityResponse` fixtures.
 
-## Install
+## Installation
 
 ```bash
 dotnet add package Soenneker.AutoFaker.Overrides.Responses.Entity
 ```
 
-## What you get
+## Usage
 
-- `EntityResponseOverride` — An AutoFaker (AutoBogus) override for the EntityResponse object.
+```csharp
+using Soenneker.AutoFaker.Overrides.Responses.Entity;
+using Soenneker.Responses.Entity;
+using Soenneker.Utils.AutoBogus;
 
-## API at a glance
+var autoFaker = new AutoFaker();
+autoFaker.Config.Overrides = [new EntityResponseOverride()];
 
-| API | What it does | Result / important behavior |
-| --- | --- | --- |
-| `EntityResponseOverride.CanOverride(context)` | Executes the can override operation. | A value indicating whether the operation succeeded. |
+EntityResponse response = autoFaker.Generate<EntityResponse>();
+```
+
+The override applies to `EntityResponse` and derived types. It sets `Id` to a GUID string and assigns the same current UTC value to `CreatedAt` and `ModifiedAt`. Adjust `ModifiedAt` afterward when a test needs a distinct update time or `null`.
